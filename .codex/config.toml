@@ -1,0 +1,4 @@
+# Codex plugin (codex-plugin-cc) defaults for this project.
+# Loaded only when the project is trusted (see scripts/cloud-setup.sh).
+# Model is intentionally not pinned: Codex picks the default available to the account.
+model_reasoning_effort = "high"
