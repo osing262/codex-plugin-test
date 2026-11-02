@@ -31,6 +31,13 @@ Claude Code 클라우드에서 `openai/codex-plugin-cc`를 쓰기 위한 구성�
 환경의 셋업 스크립트에 `scripts/cloud-setup.sh`를 지정해요. Codex CLI를 설치하고 로그인 상태를 출력해요.
 네트워크 정책에서 `api.openai.com`, `auth.openai.com`을 허용해야 해요. `chatgpt.com` 루트는 403이었어요.
 
+## 2-1. 역할 분담 (플러그인 README 권장 방식)
+- **Claude Code가 구현, Codex는 읽기 전용 검토자.** 규칙은 `CLAUDE.md`에 적어뒀어요.
+- 마무리 전에 `/codex:review`(여러 파일이면 `--background` 후 `/codex:status`, `/codex:result`),
+  설계가 걱정되면 `/codex:adversarial-review <초점>`, 막히면 `/codex:rescue`.
+- `.codex/config.toml`로 기본 추론 강도를 `high`로 정했어요. 모델은 고정하지 않았어요.
+  프로젝트 설정은 프로젝트가 trusted일 때만 적용돼서, 셋업 스크립트가 `~/.codex/config.toml`에 trust를 추가해요.
+
 ## 3. 로그인 유지
 컨테이너는 임시라서 `~/.codex/auth.json`이 세션이 바뀌면 사라질 수 있어요.
 
